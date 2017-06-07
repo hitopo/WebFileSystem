@@ -20,12 +20,13 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
 /**
  * 处理文件上传的servlet
  */
 public class UploadFileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
+        doPost(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -52,24 +53,24 @@ public class UploadFileServlet extends HttpServlet {
         }
 
         //获取当前用户，即将其保存在用户名的文件夹之下
-        User user = (User)request.getSession().getAttribute("user");
+        User user = (User) request.getSession().getAttribute("user");
 
         //保存根目录
-        String Filedic = "e://uploads//" + user.getUserName() + "//";
+        String Filedic = "e://uploads//" + user.getUserId() + "//";
         File uploadFile = new File(Filedic);
-        if(!uploadFile.exists()) {
+        if (!uploadFile.exists()) {
             uploadFile.mkdir();
         }
         //文件列表迭代器
         Iterator<FileItem> it = items.iterator();
         entity.File file;
         //迭代访问上传过来的文件
-        while(it.hasNext()) {
+        while (it.hasNext()) {
             file = new entity.File();
             FileItem item = it.next();
             //获取文件名称
-            String fileName  = item.getName();
-            if(item.getName()==null) {
+            String fileName = item.getName();
+            if (item.getName() == null) {
                 //获取文件名为空就跳出去
                 continue;
             }
@@ -89,7 +90,7 @@ public class UploadFileServlet extends HttpServlet {
 
             //获取当前时间，设置为上传时间
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            String time= sdf.format(new Date());
+            String time = sdf.format(new Date());
 
             //设置文件属性
             file.setFileName(fileName);

@@ -4,10 +4,11 @@ import dao.FileDao;
 import daoimpl.FileDaoImpl;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 
@@ -30,30 +31,40 @@ public class DownloadFileServlet extends HttpServlet {
         entity.File file = fileDao.getFileById(fileId);
 
         //设置返回的是下载的文件
-        response.setContentType("application/x-msdownload");
+        response.setContentType("application/octet-stream;charset=utf-8");
 
         /*
          * 这个地方会引起中文乱码问题，记得最后解决
          * 文件名中文乱码
          */
 
+
+        //解决中文乱码问题
         //设置响应头信息
-        response.setHeader("Content-Disposition", "attachment;filename=" + file.getFileName());
+        response.setHeader("Content-Disposition", "attachment;filename=" +
+                new String(file.getFileName().getBytes("utf-8"), "ISO-8859-1"));
         response.setHeader("Content-Length", Long.toString(file.getFileSize()));
 
         //下载文件
         String path = file.getFilePath();
-        ServletOutputStream sos = response.getOutputStream();
-        FileInputStream fis = new FileInputStream(path);
+
+        //设置输入输出流
+        BufferedOutputStream bos = new BufferedOutputStream(
+                response.getOutputStream());
+        BufferedInputStream bis = new BufferedInputStream(
+                new FileInputStream(path));
         byte[] b = new byte[1024];
         int n;
-        while ((n = fis.read(b)) != -1) {
-            sos.write(b, 0, n);
+        while ((n = bis.read(b)) != -1) {
+            bos.write(b, 0, n);
         }
 
         //文件流传输完成，关闭流对象
-        fis.close();
-        sos.flush();
-        sos.close();
+        bos.flush();
+        bis.close();
+        bos.close();
+
+        bis = null;
+        bos = null;
     }
 }

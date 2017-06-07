@@ -23,10 +23,12 @@ public class ChangeUserInfoServlet extends HttpServlet {
         //设置编码
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
+
         UserDao userDao = new UserDaoImpl();
         User currentUser = (User) request.getSession().getAttribute("user");
         int id = currentUser.getUserId();
-        //获取用户信息
+
+        //重新获取用户信息
         User user = userDao.getUserByUserId(id);
         if (user != null) {
             //获取到用户
