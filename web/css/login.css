@@ -1,0 +1,63 @@
+*{
+	margin:0;
+	padding: 0;
+}
+body {
+	background: url("../images/loginBackground.jpg") no-repeat;
+	background-size: 100% 540px; 
+}
+#loginPanel {
+    position: absolute;
+    top:15%;
+    left:65%;
+    font-size:20px;
+    font-family: "微软雅黑", serif;
+    line-height: 150%;
+    border: 1px solid black;
+    padding:20px;
+    border: 1px solid #ccc;
+    background: #f6f6f6;
+    border-radius: 15px;
+}
+#title {
+    text-align: center;
+    font-size:30px;
+}
+input {
+	margin: 5px;
+	font-size: 16px;
+	width: 150px;
+}
+tr {
+	text-align: center;
+}
+.btn {
+	font-size: 20px;
+	width: 100px;
+	margin-left: 20px; 
+}
+#footer {
+	color: #b6bac3;
+  text-align: center;
+  font-size: 14px;
+  margin-top: 540px;
+  color: black;
+}
+a{
+  color: black;
+  font-style: border;
+	 text-decoration: none;
+}
+#text {
+	font-family: "微软雅黑";
+	font-size: 30px;
+	position: absolute;
+	left: 50px;
+	top: 50px;
+}
+table {
+	height: 300px;
+}
+#tip {
+	color: red;
+}
