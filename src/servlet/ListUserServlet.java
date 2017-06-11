@@ -30,7 +30,7 @@ public class ListUserServlet extends HttpServlet {
         int rowCount = userDao.getRowCount();
         //创建分页对象
         //一页显示10个数据
-        Page page = new Page(10, request.getParameter("num"), rowCount);
+        Page page = new Page(9, request.getParameter("num"), rowCount);
         //获取用户列表
         ArrayList<User> userList = userDao.listUser(page.getStartRow(), page.getSize());
         //存放属性信息

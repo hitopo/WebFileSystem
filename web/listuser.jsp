@@ -8,25 +8,31 @@
             margin:0 10px;
             padding:0;
         }
-    	h1{
-            margin-top:10px;
-    		text-align: center;
-    	}
-    	table{
-            margin-top:20px;
-    		width:100%;
-    		font-size:20px;
+        table{
+            margin-top:5px;
+            width:100%;
+            font-size:20px;
             font-family: "微软雅黑", serif;
-				text-align: center;
-			}
-		td{
-			text-align:center;
-		}
+            text-align: center;
+            
+        }
+        td,th{
+            text-align:center;
+            padding: 5px;
+            color: rgb(95, 74, 121);
+            cursor: default;
+        }
+         tr:nth-child(even) {
+            background: rgb(223, 216, 232);
+        }
+        tr:nth-child(odd) {
+           background: #FFF;
+        }
         form {
             display:inline;
         }
         .footer {
-            margin-top:10px;
+            margin-top:15px;
             text-align: center;
         }
         .submitBtn {
@@ -36,17 +42,16 @@
     </style>
 </head>
 <body>
-   <h1>用户信息</h1>
-   <table  border="1" cellspacing="0" cellpadding="0">
-       <tr>
-           <th>用户编号</th>
-           <th>用户姓名</th>
-           <th>用户密码</th>
-           <th>email</th>
-           <th>用户类型</th>
-           <th>修改</th>
-           <th>删除</th>
-       </tr>
+  <table>
+     <tr>
+         <th>用户编号</th>
+         <th>用户姓名</th>
+         <th>用户密码</th>
+         <th>email</th>
+         <th>用户类型</th>
+         <th>修改</th>
+         <th>删除</th>
+     </tr>
        <!-- 循环调用显示所有学生信息 -->
        <c:forEach var="user" items="${userList}">
            <tr>

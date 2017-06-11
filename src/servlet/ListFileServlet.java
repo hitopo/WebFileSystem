@@ -33,7 +33,7 @@ public class ListFileServlet extends HttpServlet {
         FileDao fileDao = new FileDaoImpl();
         int rowCount = fileDao.getRowCount(userid);
         //创建分页对象
-        Page page = new Page(10, request.getParameter("num"), rowCount);
+        Page page = new Page(9, request.getParameter("num"), rowCount);
         List<File> files = fileDao.listFile(userid,page.getStartRow(),page.getSize());
         //获取到了user的file列表
         request.setAttribute("fileList", files);

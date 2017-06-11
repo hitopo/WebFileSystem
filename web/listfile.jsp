@@ -8,25 +8,31 @@
             margin:0 10px;
             padding:0;
         }
-        h1{
-            margin-top:10px;
-            text-align: center;
-        }
         table{
-            margin-top:20px;
+            margin-top:5px;
             width:100%;
             font-size:20px;
             font-family: "微软雅黑", serif;
             text-align: center;
+            
         }
-        td{
+        td,th{
             text-align:center;
+            padding: 5px;
+            color: rgb(95, 74, 121);
+            cursor: default;
+        }
+         tr:nth-child(even) {
+            background: rgb(223, 216, 232);
+        }
+        tr:nth-child(odd) {
+           background: #FFF;
         }
         form {
             display:inline;
         }
         .footer {
-            margin-top:10px;
+            margin-top:15px;
             text-align: center;
         }
         .submitBtn {
@@ -36,8 +42,7 @@
     </style>
 </head>
 <body>
-<h1>文件信息</h1>
-<table border="1" cellspacing="0" cellpadding="0">
+<table>
     <tr>
         <th>文件名</th>
         <th>文件大小</th>
@@ -51,7 +56,7 @@
             <td>${file.fileSize}</td>
             <td>${file.time}</td>
             <td><a href="DownloadFileServlet?fileid=${file.fileId}">下载</a></td>
-            <td><a href="DeleteFileServlet?fileid=${file.fileId}">删除</td>
+            <td><a href="DeleteFileServlet?fileid=${file.fileId}">删除</a>></td>
         </tr>
     </c:forEach>
 </table>
