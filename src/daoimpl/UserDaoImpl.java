@@ -5,8 +5,10 @@ import entity.User;
 import util.Dbutil;
 import util.Md5Util;
 
+import javax.management.AttributeList;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 用户逻辑处理类，UserDao接口
@@ -21,17 +23,14 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User checkUser(String userName, String password) {
         User user = null;
-        Statement stmt = null;
+        PreparedStatement pstmt = null;
         ResultSet rs = null;
-        //改造userName和password，因为SQL语句的字符串必须加引号
-        userName = "\'" + userName + "\'";
-        //将password加密之后和数据库中的进行比较
-        password = "\'" + password + "\'";
         try {
-            stmt = conn.createStatement();
-            String sql = "SELECT * FROM users WHERE username=" + userName +
-                    "AND password = " + password;
-            rs = stmt.executeQuery(sql);
+            String sql = "SELECT * FROM users WHERE username=? AND password = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,userName);
+            pstmt.setString(2,password);
+            rs = pstmt.executeQuery();
             if (rs.next()) {
                 user = new User();
                 user.setUserId(rs.getInt("userid"));
@@ -44,17 +43,7 @@ public class UserDaoImpl implements UserDao {
             e.printStackTrace();
             return null;
         } finally {
-            //关闭相关资源
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (stmt != null) {
-                    stmt.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            Dbutil.close(pstmt,rs);
         }
         //返回结果
         return user;
@@ -82,14 +71,7 @@ public class UserDaoImpl implements UserDao {
             e.printStackTrace();
             return false;
         } finally {
-            //关闭资源
-            if (pstmt != null) {
-                try {
-                    pstmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
+            Dbutil.close(pstmt,null);
         }
         return result == 1;
     }
@@ -100,13 +82,13 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User getUserByUserName(String userName) {
         User user = new User();
-        Statement stmt = null;
+        PreparedStatement pstmt = null;
         ResultSet rs = null;
-        userName = "\'" + userName + "\'";
-        String sql = "SELECT * FROM users WHERE username=" + userName;
+        String sql = "SELECT * FROM users WHERE username=?";
         try {
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,userName);
+            rs = pstmt.executeQuery(sql);
             if (rs.next()) {
                 user.setUserId(rs.getInt("userid"));
                 user.setUserId(rs.getInt("userid"));
@@ -119,61 +101,77 @@ public class UserDaoImpl implements UserDao {
             e.printStackTrace();
             return null;
         } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (stmt != null) {
-                    stmt.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            Dbutil.close(pstmt,rs);
         }
         return user;
     }
 
     /**
-     * 获取所有的user对象
-     * 保存在容器中
+     * 获取记录行数
+     * @return 记录行数
      */
     @Override
-    public ArrayList<User> getAllUser() {
-        ArrayList<User> userList = new ArrayList<User>();
-        User user = null;
-        ResultSet rs = null;
-        Statement stmt = null;
-
+    public int getRowCount() {
+        int count = 0;
         String sql = "SELECT * FROM users";
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
         try {
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
             while (rs.next()) {
-                user = new User();
-                user.setUserId(rs.getInt("userid"));
-                user.setUserName(rs.getString("username"));
-                user.setPassword(rs.getString("password"));
-                user.setEmail(rs.getString("email"));
-                user.setType(rs.getString("type"));
-                userList.add(user);
+                count++;
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
         } finally {
             try {
                 if (rs != null) {
                     rs.close();
                 }
-                if (stmt != null) {
-                    stmt.close();
+                if (pstmt != null) {
+                    pstmt.close();
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-        return userList;
+        return count;
+    }
 
+    /**
+     * 获取记录列表
+     * @param startRow 开始行数
+     * @param size 每一页的大小
+     * @return 列表
+     */
+    @Override
+    public ArrayList<User> listUser(int startRow,int size) {
+        ArrayList<User> users = new ArrayList<User>();
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM users LIMIT ?,?";
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1,startRow);
+            pstmt.setInt(2,size);
+            rs = pstmt.executeQuery();
+            while(rs.next()) {
+                User user = new User();
+                user.setUserId(rs.getInt("userid"));
+                user.setUserName(rs.getString("username"));
+                user.setPassword(rs.getString("password"));
+                user.setEmail(rs.getString("email"));
+                user.setType(rs.getString("type"));
+
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            Dbutil.close(pstmt,rs);
+        }
+        return users;
     }
 
     /**
@@ -182,12 +180,13 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User getUserByUserId(int userid) {
         User user = new User();
-        Statement stmt = null;
+        PreparedStatement pstmt = null;
         ResultSet rs = null;
-        String sql = "SELECT * FROM users WHERE userid = " + userid;
+        String sql = "SELECT * FROM users WHERE userid = ?";
         try {
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1,userid);
+            rs = pstmt.executeQuery();
             while (rs.next()) {
                 //设置user参数
                 user.setUserId(rs.getInt("userid"));
@@ -200,16 +199,7 @@ public class UserDaoImpl implements UserDao {
             e.printStackTrace();
             return null;
         } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (stmt != null) {
-                    stmt.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+           Dbutil.close(pstmt,rs);
         }
         return user;
     }
@@ -232,16 +222,7 @@ public class UserDaoImpl implements UserDao {
             e.printStackTrace();
             return false;
         } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (pstmt != null) {
-                    pstmt.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+           Dbutil.close(pstmt,rs);
         }
         return result == 1;
     }
@@ -263,16 +244,7 @@ public class UserDaoImpl implements UserDao {
             e.printStackTrace();
             return false;
         } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (pstmt != null) {
-                    pstmt.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+           Dbutil.close(pstmt,null);
         }
         return result == 1;
     }
@@ -296,25 +268,8 @@ public class UserDaoImpl implements UserDao {
             e.printStackTrace();
             return false;
         } finally {
-            try {
-                if (pstmt != null) {
-                    pstmt.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            Dbutil.close(pstmt,null);
         }
         return result == 1;
     }
-//
-//    public static void main(String[] args) {
-//        UserDao ud = new UserDaoImpl();
-//        User user = new User();
-//        user.setUserId(3);
-//        user.setUserName("小苏");
-//        user.setPassword(Md5Util.encrypt("000000"));
-//        user.setEmail("000000@qq.com");
-//        System.out.println(ud.changeUserInfo(user));
-//
-//    }
 }

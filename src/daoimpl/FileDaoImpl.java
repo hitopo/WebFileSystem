@@ -2,6 +2,7 @@ package daoimpl;
 
 import dao.FileDao;
 import entity.File;
+import sun.util.resources.cldr.tn.CurrencyNames_tn;
 import util.Dbutil;
 
 import java.sql.*;
@@ -39,13 +40,7 @@ public class FileDaoImpl implements FileDao {
             e.printStackTrace();
             return false;
         } finally {
-            try {
-                if (pstmt != null) {
-                    pstmt.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            Dbutil.close(pstmt,null);
         }
         return result == 1;
     }
@@ -57,18 +52,19 @@ public class FileDaoImpl implements FileDao {
      * @return 文件列表
      */
     @Override
-    public List<File> getUserFile(int userid) {
+    public List<File> listFile(int userid,int startRow,int size) {
         List<File> files = new ArrayList<File>();
-        File file;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        String sql = "SELECT * FROM files WHERE userid=?";
+        String sql = "SELECT * FROM files WHERE userid=? LIMIT ?,?";
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, userid);
+            pstmt.setInt(2,startRow);
+            pstmt.setInt(3,size);
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                file = new File();
+                File file = new File();
                 file.setFileId(rs.getInt("fileid"));
                 file.setFileName(rs.getString("filename"));
                 file.setFilePath(rs.getString("filepath"));
@@ -81,16 +77,7 @@ public class FileDaoImpl implements FileDao {
             e.printStackTrace();
             return null;
         } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (pstmt != null) {
-                    pstmt.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            Dbutil.close(pstmt,rs);
         }
         return files;
     }
@@ -122,23 +109,13 @@ public class FileDaoImpl implements FileDao {
             e.printStackTrace();
             return null;
         } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (pstmt != null) {
-                    pstmt.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+           Dbutil.close(pstmt,rs);
         }
         return file;
     }
 
     /**
      * 根据文件id删除数据库中的文件
-     *
      * @param fileid 文件id
      * @return 成功与否
      */
@@ -156,15 +133,30 @@ public class FileDaoImpl implements FileDao {
             e.printStackTrace();
             return false;
         } finally {
-            try {
-                if(pstmt!=null) {
-                    pstmt.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            Dbutil.close(pstmt,null);
         }
-
         return result == 1;
+    }
+
+    @Override
+    public int getRowCount(int userid) {
+        PreparedStatement pstmt = null;
+        int count = 0;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM files WHERE userid=?";
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1,userid);
+            rs = pstmt.executeQuery();
+            while(rs.next()) {
+                count ++;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return  0;
+        } finally {
+            Dbutil.close(pstmt,rs);
+        }
+        return count;
     }
 }

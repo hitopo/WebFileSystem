@@ -11,9 +11,11 @@ public interface FileDao {
 
     boolean addFile(File file);
 
-    List<File> getUserFile(int userid);
+    List<File> listFile(int userid,int startRow,int size);
 
     File getFileById(int fileid);
 
     boolean deleteFileById(int fileid);
+
+    int getRowCount(int userid);
 }

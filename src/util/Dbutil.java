@@ -1,9 +1,7 @@
 package util;
 
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 /**
  * 数据库工具类
@@ -38,6 +36,21 @@ public class Dbutil {
             }
         }
         return conn;
+    }
+
+    public static boolean close(PreparedStatement pstmt, ResultSet rs) {
+        try {
+            if(rs!=null) {
+                rs.close();
+            }
+            if(pstmt!=null) {
+                pstmt.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }
 

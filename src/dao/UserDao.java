@@ -3,6 +3,7 @@ package dao;
 import entity.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 业务逻辑层接口
@@ -10,10 +11,14 @@ import java.util.ArrayList;
 public interface UserDao {
 
     User checkUser(String userName,String password);
+
     boolean addUser(User user);
+
     User getUserByUserName(String userName);
 
-    ArrayList<User> getAllUser();
+    int getRowCount();
+    ArrayList<User> listUser(int startRow, int size);
+
 
     User getUserByUserId(int userid);
 
