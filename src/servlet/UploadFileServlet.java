@@ -101,7 +101,8 @@ public class UploadFileServlet extends HttpServlet {
 
             //将文件保存在数据库中
             FileDao fileDao = new FileDaoImpl();
-            fileDao.addFile((entity.File) file);
+            fileDao.addFile(file);
+
         }
     }
 }
