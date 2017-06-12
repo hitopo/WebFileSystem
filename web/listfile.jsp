@@ -56,7 +56,7 @@
             <td>${file.fileSize}</td>
             <td>${file.time}</td>
             <td><a href="DownloadFileServlet?fileid=${file.fileId}">下载</a></td>
-            <td><a href="DeleteFileServlet?fileid=${file.fileId}">删除</a>></td>
+            <td><a href="DeleteFileServlet?fileid=${file.fileId}" onclick="return confirm('确定要删除吗？');">删除</a></td>
         </tr>
     </c:forEach>
 </table>
