@@ -22,10 +22,11 @@ public class DoUpdateUserServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("userid"));
         String type=request.getParameter("type");
         UserDao userDao = new UserDaoImpl();
-        boolean isSuccess = userDao.updateUser(id,type);
         //改变权限成功之后跳转到显示的界面
-        if(isSuccess) {
+        if(userDao.updateUser(id,type)) {
             response.sendRedirect("ListUserServlet");
+        } else{
+            response.getWriter().println("更新权限失败");
         }
     }
 

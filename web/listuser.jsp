@@ -8,6 +8,10 @@
             margin:0 10px;
             padding:0;
         }
+        body{
+            overflow-x : hidden;
+            overflow-y : hidden;
+        }
         table{
             margin-top:5px;
             width:100%;

@@ -44,9 +44,4 @@ public class FileUtil {
         //childfile==null说明文件夹是空的文件夹，直接删除即可
         return fileDec.delete();
     }
-
-    public static void main(String[] args) {
-        System.out.println(deleteFiles("e:\\uploads\\黄腾\\eclipse汉化包.zip"));
-    }
-
 }

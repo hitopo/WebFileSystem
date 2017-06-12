@@ -11,7 +11,7 @@ $(document).ready(function() {
     });
     //修改资料
     $("#info_change").click(function() {
-        $("#content_info").attr('src', 'servlet/ChangeUserInfoServlet');
+        $("#content_info").attr('src', 'changeinfo.jsp');
         //改变背景颜色
         // $(this).css('backgroundColor', '#4AC8EA');
         // $("#about_us").css('backgroundColor', '#EFF4F8');

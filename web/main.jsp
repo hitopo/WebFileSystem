@@ -56,7 +56,7 @@
             </ul>
         </div>
         <div id="content">
-            <iframe id="content_info" src="aboutus.html"></iframe>
+            <iframe id="content_info" src="servlet/ListFileServlet"></iframe>
         </div>
         <div id="footer">
             ©2017 CHD

@@ -26,6 +26,8 @@ public class DoChangeUserInfoServlet extends HttpServlet {
         //获取修改用户的编号
         int id = Integer.parseInt(request.getParameter("userid"));
         UserDao userDao = new UserDaoImpl();
+
+        //获取当前用户对象
         User currentUser = (User) request.getSession().getAttribute("user");
         User user = new User();
         //组装user
@@ -33,12 +35,16 @@ public class DoChangeUserInfoServlet extends HttpServlet {
         user.setUserName(request.getParameter("userName"));
         user.setPassword(Md5Util.encrypt(request.getParameter("password")));
         user.setEmail(request.getParameter("email"));
+        user.setType(currentUser.getType());
+        //获取输出流对象
+        PrintWriter out =  response.getWriter();
         if(userDao.changeUserInfo(user)){
-            //跳转到登录界面
-            PrintWriter out =  response.getWriter();
+            //更改会话中保存的当前用户
+            request.getSession().setAttribute("user",user);
+
             if(!currentUser.getUserName().equals(user.getUserName())) {
                 //用户修改了用户名
-                //输出提示信息并跳转到登录界面
+                //刷新主页面，及时将主页面中的用户名更改过来
                 out.println("<script>");
                 out.println("window.parent.location.reload()");
                 out.println("</script>");
@@ -46,6 +52,9 @@ public class DoChangeUserInfoServlet extends HttpServlet {
                 //没有修改用户名信息就输出修改成功
                 out.println("修改资料成功");
             }
+        } else {
+            //修改失败
+            out.println("修改资料失败");
         }
     }
 

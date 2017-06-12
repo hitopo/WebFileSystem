@@ -28,10 +28,6 @@
         <servlet-class>servlet.DoUpdateUserServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ChangeUserInfoServlet</servlet-name>
-        <servlet-class>servlet.ChangeUserInfoServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>DoChangeUserInfoServlet</servlet-name>
         <servlet-class>servlet.DoChangeUserInfoServlet</servlet-class>
     </servlet>
@@ -79,10 +75,6 @@
     <servlet-mapping>
         <servlet-name>DoUpdateUserServlet</servlet-name>
         <url-pattern>/servlet/DoUpdateUserServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ChangeUserInfoServlet</servlet-name>
-        <url-pattern>/servlet/ChangeUserInfoServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DoChangeUserInfoServlet</servlet-name>

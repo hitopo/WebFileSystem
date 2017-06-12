@@ -11,8 +11,10 @@
         }
 
         body {
+            overflow-x : hidden;
+            overflow-y : hidden;
             font-size: 16px;
-            font-family: "微软雅黑", arial;
+            font-family: "微软雅黑", arial, serif;
         }
 
         .container {
@@ -70,7 +72,7 @@
 <div class="container">
     <div class="content">
         <div class="title">个人资料</div>
-        <form action="DoChangeUserInfoServlet?userid=${user.userId}" method="post">
+        <form action="servlet/DoChangeUserInfoServlet?userid=${user.userId}" method="post">
             <table>
                 <tr>
                     <td>用户姓名：</td>
