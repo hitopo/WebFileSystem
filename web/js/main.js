@@ -73,8 +73,9 @@ $(document).ready(function() {
     });
     //点击最小化按钮
     $(".min_bar").click(function() {
-        //最小化上传队列框
         alert("最小化");
-        
+        //最小化上传队列框
+        //改变高度即可
+        $("#upload_list").css('height', '40');
     });
 });
