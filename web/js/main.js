@@ -59,4 +59,6 @@ $(document).ready(function() {
     }, function() {
         $(this).css('backgroundColor', '#EFF4F8');
     });
+    //文件上传列表的隐藏
+    $("#upload_list").hide();
 });
