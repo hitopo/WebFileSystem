@@ -33,6 +33,8 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 	text-align: center;
 	text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
 	width: 100%;
+	margin-top: 15px;
+	margin-left: 15px;
 }
 .uploadify:hover .uploadify-button {
 	background-color: #606060;
@@ -62,7 +64,7 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
-	font: 11px Verdana, Geneva, sans-serif;
+	font: 12px Verdana, Geneva, sans-serif;
 	margin-top: 5px;
 	max-width: 350px;
 	padding: 10px;

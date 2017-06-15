@@ -17,7 +17,7 @@
           'buttonCursor': 'hand', //文件上传鼠标样式
           'fileSizeLimit': '1GB', //最大单个文件大小
           'width': 200, //控件宽度
-          'height': 50, //控件长度
+          'height': 45, //控件长度
           'method': 'post',
           'onFallBack': function() {
               alert("您的浏览器不支持Flash");
@@ -83,7 +83,7 @@
           },
           //当队列中的所有文件全部完成上传时触发
           'onQueueComplete': function(queueData) {
-              $("#tip").html('成功上传的文件数: ' + queueData.uploadsSuccessful + '\r\n上传出错的文件数: ' + queueData.uploadsErrored);
+              $(".tip").html('成功上传的文件数: ' + queueData.uploadsSuccessful + '\r\n上传出错的文件数: ' + queueData.uploadsErrored);
           }
       });
   });

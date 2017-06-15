@@ -59,6 +59,22 @@ $(document).ready(function() {
     }, function() {
         $(this).css('backgroundColor', '#EFF4F8');
     });
-    //文件上传列表的隐藏
+    //开始时上传列表应该隐藏
     $("#upload_list").hide();
+    //点击关闭按钮文件上传关闭
+    $(".close_bar").click(function() {
+        if(!confirm("是否确定关闭？您正在上传的文件可能丢失")) {
+            return;
+        }
+        //隐藏上传队列框
+        $("#upload_list").hide();
+        //删除正在上传的文件
+        $("#uploadify").uploadify("cancel","*");
+    });
+    //点击最小化按钮
+    $(".min_bar").click(function() {
+        //最小化上传队列框
+        alert("最小化");
+        
+    });
 });

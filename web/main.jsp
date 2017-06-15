@@ -66,23 +66,27 @@
             <a href="#">版权投诉</a>
         </div>
         <div id="upload_list">
-            <div id="bar">
-             <div id="btns"></div>
+            <div class="bar">
+            <div class="upload_title"><strong>文件上传队列</strong></div>
+             <div class="btns">
+                 <div class="min_bar"></div>
+                 <div class="close_bar"></div>
+             </div>
             </div>
             <div id="fileQueue">
                 <form action="servlet/FileUploadServlet" enctype="multipart/form-data" method="post">
                     <input type="file" name="uploadify" id="uploadify">
                 </form>
             </div>
-            <div id="action">
+            <div class="action">
                 <a href="javascript:$('#uploadify').uploadify('upload','*')">开始上传</a>
                 <!-- 上传所有文件 -->
-                <a href="javascript:$('#uploadify').uploadify('cancel','*')">取消上传</a>
+                <a href="javascript:$('#uploadify').uploadify('cancel','*')">删除队列中的所有文件</a>
                 <!-- 取消所有文件 -->
                 <a href="javascript:$('#uploadify').uploadify('stop','*')">停止上传</a>
                 <!-- 停止上传 -->
             </div>
-            <div id="tip"></div>
+            <div class="tip"></div>
         </div>
     </div>
 </body>

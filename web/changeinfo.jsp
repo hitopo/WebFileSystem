@@ -65,7 +65,7 @@
         }
     </style>
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="changeinfo.js"></script>
+    <script type="text/javascript" src="js/changeinfo.js"></script>
 </head>
 
 <body>
