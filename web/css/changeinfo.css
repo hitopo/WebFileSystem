@@ -1,0 +1,148 @@
+  * {
+      margin: 0 auto;
+      padding: 0;
+  }
+  
+  body {
+      overflow-x: hidden;
+      overflow-y: hidden;
+      font-size: 16px;
+      font-family: "微软雅黑", arial, serif;
+  }
+  
+  .container {
+      width: 80%;
+      border: solid 1px #ededed;
+      margin-top: 40px;
+      color: #666;
+  }
+  
+  .content {
+      margin: 10px;
+  }
+  
+  .title {
+      padding: 7px 0;
+      text-align: center;
+      font-size: 24px;
+      background: #ededed;
+  }
+  
+  div {
+      margin-bottom: 15px;
+  }
+  
+  input {
+      display: inline-block;
+      border: 0;
+      padding: 0;
+      margin: 0;
+      color: 
+  }
+  
+  #userName,
+  #password,
+  #password1,
+  #email {
+      width: 260px;
+      height: 24px;
+      border: 1px solid #ccc;
+      padding: 0 5px;
+      /*color: #ccc;*/
+      font-size: 16px;
+      outline: none;
+  }
+  
+  label {
+      display: inline-block;
+      width: 80px;
+      text-align: right;
+  }
+  
+  .count {
+      padding-left: 100px;
+      visibility: hidden;
+      color: #ccc;
+      font-size: 14px;
+      height: 16px;
+      line-height: 16px;
+  }
+  
+  .userNameInfo,
+  .passwordInfo,
+  .password1Info,
+  .emailInfo {
+      display: none;
+      height: 16px;
+      font-size: 14px;
+      color: #ccc;
+  }
+  
+  .warn {
+      display: inline-block;
+      background: url("../images/warn.png") no-repeat;
+      background-size: 22px 22px;
+      height: 22px;
+      width: 22px;
+  }
+  
+  .err {
+      display: inline-block;
+      background: url("../images/err.png") no-repeat;
+      background-size: 22px 22px;
+      height: 22px;
+      width: 22px;
+  }
+  
+  .right {
+      display: inline-block;
+      background: url("../images/right.png") no-repeat;
+      background-size: 22px 22px;
+      height: 22px;
+      width: 22px;
+  }
+  
+  .strong p {
+      margin-left: 85px;
+  }
+  
+  .strong span {
+      display: inline-block;
+      width: 88px;
+      height: 20px;
+      font-size: 13px;
+      color: #fff;
+      text-align: center;
+      line-height: 20px;
+  }
+  
+  .active {
+      background-color: #f97101;
+  }
+  
+  .no-active {
+      background: #f9d194;
+  }
+  
+  .btn_wrapper {
+      margin-top: 20px;
+      margin-bottom: 10px;
+      margin-left: 45px;
+  }
+  
+  .btn {
+      border-radius: 2px;
+      color: #fff;
+      border: 1px solid #5c8ebf;
+      width: 120px;
+      height: 35px;
+      margin-left: 30px;
+      font-size: 18px;
+      line-height: 18px;
+      background: #6698c9;
+      cursor: pointer;
+  }
+
+form{
+    margin:30px;
+}

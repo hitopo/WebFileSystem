@@ -43,8 +43,8 @@ window.onload = function() {
       //全是字母
       pwdReg2 = /[^a-zA-z]/g;
     // 匹配eamil
-    emialReg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
-    //匹配汉字（不需要）
+    emailReg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+    //匹配汉字（不需要）因为password框输入不了汉字
     // pwdReg3 = /[\u4e00-\u9fa5]/g;
 
     //设置用户名提示
@@ -120,15 +120,15 @@ window.onload = function() {
       if (this.value.length === 0) {
         oPwdInfo.innerHTML = '<i class = "err"></i>不能为空';
       }
-      // 相同的字符
-      else if (findStr(this.value)) {
-        oPwdInfo.innerHTML = '<i class = "err"></i>不能是相同的字符';
-      }
       //长度不符合6-16
       else if (this.value.length < 6) {
         oPwdInfo.innerHTML = '<i class = "err"></i>长度小于6个字符';
       } else if (this.value.length > 16) {
         oPwdInfo.innerHTML = '<i class = "err"></i>长度大于16个字符';
+      }
+      // 相同的字符
+      else if (findStr(this.value)) {
+        oPwdInfo.innerHTML = '<i class = "err"></i>不能是相同的字符';
       }
       //不符合正则表达式，全是数字或者字母，也不能存在汉字
       else if (!pwdReg1.test(this.value)) {
@@ -157,14 +157,14 @@ window.onload = function() {
       //email提示
     oEmail.onfocus = function() {
         oEmailInfo.style.display = 'inline';
-        oEmailInfo.innerHTML = '<i class="warn"></i>请输入email，emial中不能含有汉字';
+        oEmailInfo.innerHTML = '<i class="warn"></i>输入email，不能含有汉字';
       }
       // 验证email
     oEmail.onblur = function() {
       if (this.value === '') {
-        oEmailInfo.innerHTML = '<i class="err"></i>eamil不能为空';
-      } else if (!emialReg.test(this.value)) {
-        oEmailInfo.innerHTML = '<i class="err"></i>emial格式不符合要求';
+        oEmailInfo.innerHTML = '<i class="err"></i>不能为空';
+      } else if (!emailReg.test(this.value)) {
+        oEmailInfo.innerHTML = '<i class="err"></i>eamil格式不正确';
       } else {
         oEmailInfo.innerHTML = '<i class="right"></i>OK！';
       }

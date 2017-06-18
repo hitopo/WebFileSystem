@@ -19,7 +19,7 @@
         <div class  = "userName-wrapper">
             <label for="userName">用户名：</label>
             <input type="text" id = "userName" name="userName">
-            <span class = "userNameInfo"><i class = "warn"></i>密码错误</span>
+            <span class = "userNameInfo"><i class = "warn"></i></span>
         </div>
         <div class = "count"></div>
         <div class = "password-wrapper">

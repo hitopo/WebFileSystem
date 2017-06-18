@@ -9,63 +9,78 @@
 	font-family: "微软雅黑", serif;
 }
 div {
-	margin-bottom: 15px;
+    margin-bottom: 15px;
 }
+
 input {
-	display: inline-block;
-	border:0;
-	padding: 0;
-	margin: 0;
+    display: inline-block;
+    border: 0;
+    padding: 0;
+    margin: 0;
 }
-#userName,#password,#password1,#email{
-	width:260px;
-	height: 24px;
-	border: 1px solid #ccc;
-	padding: 0 5px;
-	/*color: #ccc;*/
-	font-size: 16px;
-	outline: none;
+
+#userName,
+#password,
+#password1,
+#email {
+    width: 260px;
+    height: 24px;
+    border: 1px solid #ccc;
+    padding: 0 5px;
+    /*color: #ccc;*/
+    font-size: 16px;
+    outline: none;
 }
-label{
-	display:inline-block;
-	width:80px;
-	text-align: right;
+
+label {
+    display: inline-block;
+    width: 80px;
+    text-align: right;
 }
-.count{
-	padding-left: 100px;
-	visibility: hidden;
-	color: #ccc;
-	font-size: 14px;
-	height:16px;
-	line-height: 16px;
+
+.count {
+    padding-left: 100px;
+    visibility: hidden;
+    color: #ccc;
+    font-size: 14px;
+    height: 16px;
+    line-height: 16px;
 }
-.userNameInfo,.passwordInfo,.password1Info,.emailInfo{
-	display: none;
-	height: 16px;
-	font-size: 14px;
-	color: #ccc;
+
+.userNameInfo,
+.passwordInfo,
+.password1Info,
+.emailInfo {
+    display: none;
+    height: 16px;
+    font-size: 14px;
+    color: #ccc;
 }
+
 .warn {
-	display: inline-block;
-	background: url("../images/warn.png") no-repeat;
-	background-size: 22px 22px;
-	height:22px;
-	width:22px;
+    display: inline-block;
+    background: url("../images/warn.png") no-repeat;
+    background-size: 22px 22px;
+    height: 22px;
+    width: 22px;
 }
-.err{
-	display: inline-block;
-	background: url("../images/err.png") no-repeat;
-	background-size: 22px 22px;
-	height:22px;
-	width:22px;
+
+.err {
+    display: inline-block;
+    background: url("../images/err.png") no-repeat;
+    background-size: 22px 22px;
+    height: 22px;
+    width: 22px;
 }
+
 .right {
-	display: inline-block;
-	background: url("../images/right.png") no-repeat;
-	background-size: 22px 22px;
-	height:22px;
-	width:22px;
+    display: inline-block;
+    background: url("../images/right.png") no-repeat;
+    background-size: 22px 22px;
+    height: 22px;
+    width: 22px;
 }
+
 .btn-wrapper {
 	margin-top: 20px;
 }
