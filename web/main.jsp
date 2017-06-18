@@ -81,7 +81,7 @@
             <div class="action">
                 <a href="javascript:$('#uploadify').uploadify('upload','*')">开始上传</a>
                 <!-- 上传所有文件 -->
-                <a href="javascript:$('#uploadify').uploadify('cancel','*')">删除队列中的所有文件</a>
+                <a href="javascript:$('#uploadify').uploadify('cancel','*')">清空上传队列</a>
                 <!-- 取消所有文件 -->
                 <a href="javascript:$('#uploadify').uploadify('stop','*')">停止上传</a>
                 <!-- 停止上传 -->

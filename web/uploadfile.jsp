@@ -71,6 +71,8 @@
             $(".btn").click(function () {
                 //显示main.jsp（父级窗口）的上传列表
                 $("#upload_list", parent.document).show();
+                //将上传列表设置成最大化再显示
+                $("#upload_list",parent.document).css('height', '450');
             });
         });
     </script>

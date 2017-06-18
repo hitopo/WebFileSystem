@@ -63,19 +63,27 @@ $(document).ready(function() {
     $("#upload_list").hide();
     //点击关闭按钮文件上传关闭
     $(".close_bar").click(function() {
-        if(!confirm("是否确定关闭？您正在上传的文件可能丢失")) {
+        if (!confirm("是否确定关闭？您正在上传的文件可能丢失")) {
             return;
         }
         //隐藏上传队列框
         $("#upload_list").hide();
         //删除正在上传的文件
-        $("#uploadify").uploadify("cancel","*");
+        $("#uploadify").uploadify("cancel", "*");
     });
     //点击最小化按钮
     $(".min_bar").click(function() {
-        alert("最小化");
-        //最小化上传队列框
-        //改变高度即可
-        $("#upload_list").css('height', '40');
+
+        if ($("#upload_list").height() == 450) {
+            //改变图标
+            $(".min_bar").css('background-image', 'url(images/max.png)');
+            //最小化列表框
+            $("#upload_list").css('height', '40');
+        } else {
+        		//改变图标
+            $(".min_bar").css('background-image', 'url(images/min.png)');
+            //最大化上传队列框
+            $("#upload_list").css('height', '450');
+        }
     });
 });
