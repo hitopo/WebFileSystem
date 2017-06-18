@@ -6,7 +6,7 @@
     <title>用户资料修改</title>
     <link rel="stylesheet" type="text/css" href="css/changeinfo.css">
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="js/changeinfo.js"></script>
+    <script type="text/javascript" src="js/changeuserinfo.js"></script>
 </head>
 
 <body>
@@ -43,7 +43,7 @@
                     <span class="emailInfo"><i class="warn"></i></span>
                 </div>
                 <div class="btn_wrapper">
-                    <input type="reset" id="resetBtn" class="btn" value="重置">
+                    <input type="button" id="resetBtn" class="btn" value="重置">
                     <input type="button" id="submitBtn" class="btn" value="确认修改">
                 </div>
             </form>

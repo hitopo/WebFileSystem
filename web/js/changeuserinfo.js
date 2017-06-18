@@ -26,12 +26,24 @@ function finStr(str) {
 }
 
 $(document).ready(function() {
+
+    //一上来就必须显示有几个字符
+    $('.count').css('visibility', 'visible');
+    nameLength = getNameLength($('#userName').val());
+    $('.count').html(nameLength + '个字符');
+
+    //用户名和邮箱必须默认显示是ok，否则如果不点击这两个输入框，ok出不来
+    //也就提交不了修改
+    $('.userNameInfo').css('display', 'inline');
+    $('.emailInfo').css('display', 'inline');
+    $('.userNameInfo').html('<i class="right"></i>OK！');
+    $('.emailInfo').html('<i class="right"></i>OK！');
+
     //用户更改信息的验证
     //用户名提示
     $('#userName').focus(function() {
         var $info = $('.userNameInfo');
-        $info.css('display', 'inline');
-        $info.html('<i class = "warn"></i>请输入用户名，建议使用4-16个字符，' +
+        $info.html('<i class = "warn"></i>4-16个字符，' +
             '一个汉字两个字符，推荐使用中文用户名');
     });
     //显示字符数
@@ -66,7 +78,7 @@ $(document).ready(function() {
         var $info = $('.passwordInfo');
         $info.css('display', 'inline');
         $info.html('<i class = "warn"></i>' +
-            '6-16字符，请使用字母加数字或者符号，不能单独使用字母，数字或者符号');
+            '6-16个字符，不能单独使用字母，数字或者符号');
     });
     //密码测试是否能够开启确认密码
     $('#password').keyup(function() {
@@ -130,7 +142,6 @@ $(document).ready(function() {
     //邮箱提示
     $('#email').focus(function() {
         var $info = $('.emailInfo');
-        $info.css('display', 'inline');
         $info.html('<i class="warn"></i>输入email，不能含有汉字');
     });
     //邮箱验证
@@ -158,5 +169,26 @@ $(document).ready(function() {
         } else {
             alert('还有不符合要求的信息！');
         }
+    });
+
+    //重置按钮
+    $('#resetBtn').click(function() {
+        $("form")[0].reset();
+        //点击重置之后必须回到初始状态
+        nameLength = getNameLength($('#userName').val());
+        $('.count').html(nameLength + '个字符');
+
+        //重置提示信息
+        $('.userNameInfo').html('<i class="right"></i>OK！');
+        $('.emailInfo').html('<i class="right"></i>OK！');
+
+        //关闭密码强度
+        $('span').eq(3).removeClass('active');
+        $('span').eq(3).addClass('no-active');
+        $('span').eq(4).removeClass('active');
+        $('span').eq(4).addClass('no-active');
+
+        //关闭重新输入密码框
+        $('#password1').attr('disabled', 'disabled');
     });
 });
