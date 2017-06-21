@@ -72,12 +72,15 @@ $(document).ready(function() {
             $.ajax({
                 url: 'servlet/UserNameAjaxChecker',
                 type: 'POST',
-                data: { userName: $('#userName').val() },
+                data: {
+                    'userName': $("#userName").val(),
+                    'location': 'ChangeInfo'
+                },
                 success: function(data) {
                     if (data.trim() == 'false') {
                         //用户名呢重复，不可用
                         $('.userNameInfo').html('<i class = "err"></i>该用户名已经存在');
-                    } else  {
+                    } else {
                         //没有重复问题，显示OK！
                         $info.html('<i class="right"></i>OK！');
                     }

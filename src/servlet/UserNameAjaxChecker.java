@@ -33,22 +33,35 @@ public class UserNameAjaxChecker extends HttpServlet {
 
         response.setContentType("text/html;charset=utf-8");
 
+        System.out.println(request.getRequestURL().toString());
         //获取返回的response流对象
         PrintWriter out = response.getWriter();
         if (user.getUserName() != null) {
-            //不是空说明有该用户
-            if (currentUser == null) {
-                //sessinon中不存在用户说明是注册界面，返回不可用
-                out.print("false");
-            } else {
-                //session存在用户信息说明是修改用户信息页面
-                //检查传过来的userName和当前用户名是否一致
+//            //不是空说明有该用户
+//            if (currentUser == null) {
+//                //sessinon中不存在用户说明是注册界面，返回不可用
+//                out.print("false");
+//            } else {
+//                //session存在用户信息说明是修改用户信息页面
+//                //检查传过来的userName和当前用户名是否一致
+//                if (userName.equals(currentUser.getUserName())) {
+//                    //一致说明没有改用户名
+//                    out.print("true");
+//                } else {
+//                    out.print("false");
+//                }
+//            }
+            if ("ChangeInfo".equals(request.getParameter("location"))) {
+                //修改信息
                 if (userName.equals(currentUser.getUserName())) {
                     //一致说明没有改用户名
                     out.print("true");
                 } else {
                     out.print("false");
                 }
+            } else {
+                //注册用户
+                out.print("false");
             }
         } else {
             //没有用户直接返回成功
@@ -57,6 +70,6 @@ public class UserNameAjaxChecker extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request,response);
+        doGet(request, response);
     }
 }
