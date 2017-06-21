@@ -14,6 +14,8 @@ public class FileUtil {
      * @return 成功与否
      */
     public static boolean deleteFile(String filePath) {
+        //通知jvm释放系统资源解除文件占用
+        System.gc();
         File file = new File(filePath);
         return file.delete();
     }
@@ -25,6 +27,8 @@ public class FileUtil {
      * @return 成功与否
      */
     public static boolean deleteFiles(String filePath) {
+        //通知jvm释放系统资源解除文件占用
+        System.gc();
         File fileDec = new File(filePath);
         if (fileDec.isDirectory()) {
             //文件路径是一个目录

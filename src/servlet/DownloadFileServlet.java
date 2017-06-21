@@ -30,13 +30,8 @@ public class DownloadFileServlet extends HttpServlet {
         FileDao fileDao = new FileDaoImpl();
         entity.File file = fileDao.getFileById(fileId);
 
-        //设置返回的是下载的文件
+        //设置返回的是下载的文件(二进制流文件)
         response.setContentType("application/octet-stream;charset=utf-8");
-
-        /*
-         * 这个地方会引起中文乱码问题，记得最后解决
-         * 文件名中文乱码
-         */
 
 
         //解决中文乱码问题
@@ -64,7 +59,7 @@ public class DownloadFileServlet extends HttpServlet {
         bis.close();
         bos.close();
 
-        bis = null;
-        bos = null;
+        //通知jvm回收资源，释放文件占用
+        System.gc();
     }
 }
