@@ -68,9 +68,24 @@ $(document).ready(function() {
         } else if (nameLength > 16) {
             $info.html('<i class = "err"></i>长度大于16个字符');
         } else {
-            //在这之前最好坐下ajax验证用户名是否存在
-            //暂时不急着写
-            $info.html('<i class="right"></i>OK！');
+            //ajax验证
+            $.ajax({
+                url: 'servlet/DoRegServlet',
+                type: 'POST',
+                data: { userName: $('#userName').val() },
+                success: function(data) {
+                    if (data.trim() == 'false') {
+                        //用户名呢重复，不可用
+                        $('.userNameInfo').html('<i class = "err"></i>该用户名已经存在');
+                    } else  {
+                        //没有重复问题，显示OK！
+                        $info.html('<i class="right"></i>OK！');
+                    }
+                },
+                error: function() {
+                    alert('ajax异常！');
+                }
+            });
         }
     });
     //密码提示

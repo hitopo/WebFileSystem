@@ -22,7 +22,6 @@ public class DownloadFileServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //设置编码
-        response.setCharacterEncoding("utf-8");
         request.setCharacterEncoding("utf-8");
 
         //获取文件路径
@@ -30,11 +29,15 @@ public class DownloadFileServlet extends HttpServlet {
         FileDao fileDao = new FileDaoImpl();
         entity.File file = fileDao.getFileById(fileId);
 
+        //清空response信息
+        response.reset();
+
         //设置返回的是下载的文件(二进制流文件)
         response.setContentType("application/octet-stream;charset=utf-8");
 
-
         //解决中文乱码问题
+        response.setCharacterEncoding("utf-8");
+
         //设置响应头信息
         response.setHeader("Content-Disposition", "attachment;filename=" +
                 new String(file.getFileName().getBytes("utf-8"), "ISO-8859-1"));

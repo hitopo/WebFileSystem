@@ -51,6 +51,10 @@
         <servlet-name>DeleteFileServlet</servlet-name>
         <servlet-class>servlet.DeleteFileServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ChangeUserInfoServlet</servlet-name>
+        <servlet-class>servlet.ChangeUserInfoServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -100,7 +104,10 @@
         <servlet-name>DeleteFileServlet</servlet-name>
         <url-pattern>/servlet/DeleteFileServlet</url-pattern>
     </servlet-mapping>
-
+    <servlet-mapping>
+        <servlet-name>ChangeUserInfoServlet</servlet-name>
+        <url-pattern>/servlet/ChangeUserInfoServlet</url-pattern>
+    </servlet-mapping>
 
 
     <welcome-file-list>
