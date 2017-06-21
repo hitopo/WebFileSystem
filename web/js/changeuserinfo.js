@@ -70,7 +70,7 @@ $(document).ready(function() {
         } else {
             //ajax验证
             $.ajax({
-                url: 'servlet/DoRegServlet',
+                url: 'servlet/UserNameAjaxChecker',
                 type: 'POST',
                 data: { userName: $('#userName').val() },
                 success: function(data) {

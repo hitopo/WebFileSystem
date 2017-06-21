@@ -15,12 +15,8 @@ import java.io.PrintWriter;
 /**
  * 处理Ajax请求
  */
-public class DoRegServlet extends HttpServlet {
+public class UserNameAjaxChecker extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //设置编码
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
@@ -58,5 +54,9 @@ public class DoRegServlet extends HttpServlet {
             //没有用户直接返回成功
             out.print("true");
         }
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request,response);
     }
 }

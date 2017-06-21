@@ -198,7 +198,7 @@ function doAjax(userName) {
   var oUserNameInfo = document.getElementsByClassName("userNameInfo")[0];
   xmlHttp = createXmlHttp();
 
-  var url = "servlet/DoRegServlet";
+  var url = "servlet/UserNameAjaxChecker";
   xmlHttp.onreadystatechange = function() {
     if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
       if (xmlHttp.responseText.trim() == "false") {

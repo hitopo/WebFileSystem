@@ -12,8 +12,8 @@
         <servlet-class>servlet.RegServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>DoRegServlet</servlet-name>
-        <servlet-class>servlet.DoRegServlet</servlet-class>
+        <servlet-name>UserNameAjaxChecker</servlet-name>
+        <servlet-class>servlet.UserNameAjaxChecker</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ListUserServlet</servlet-name>
@@ -51,10 +51,7 @@
         <servlet-name>DeleteFileServlet</servlet-name>
         <servlet-class>servlet.DeleteFileServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>ChangeUserInfoServlet</servlet-name>
-        <servlet-class>servlet.ChangeUserInfoServlet</servlet-class>
-    </servlet>
+
 
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -65,8 +62,8 @@
         <url-pattern>/servlet/RegServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>DoRegServlet</servlet-name>
-        <url-pattern>/servlet/DoRegServlet</url-pattern>
+        <servlet-name>UserNameAjaxChecker</servlet-name>
+        <url-pattern>/servlet/UserNameAjaxChecker</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ListUserServlet</servlet-name>
@@ -104,10 +101,7 @@
         <servlet-name>DeleteFileServlet</servlet-name>
         <url-pattern>/servlet/DeleteFileServlet</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ChangeUserInfoServlet</servlet-name>
-        <url-pattern>/servlet/ChangeUserInfoServlet</url-pattern>
-    </servlet-mapping>
+
 
 
     <welcome-file-list>
