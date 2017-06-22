@@ -119,7 +119,7 @@
         <init-param>
             <!--定义不需要过滤的页面-->
             <param-name>noFilterPaths</param-name>
-            <param-value>/login.jsp;/serlvet/LoginServlet</param-value>
+            <param-value>/login.jsp;/reg.jsp</param-value>
         </init-param>
     </filter>
 
@@ -127,7 +127,6 @@
         <filter-name>LoginFilter</filter-name>
         <!--过滤所有的页面，在init-param中配置不需要过滤的页面-->
         <url-pattern>*.jsp</url-pattern>
-        <!--<url-pattern>servlet/*</url-pattern>-->
     </filter-mapping>
     <welcome-file-list>
         <welcome-file>login.jsp</welcome-file>
