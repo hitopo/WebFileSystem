@@ -22,6 +22,7 @@
           'onFallBack': function() {
               alert("您的浏览器不支持Flash");
           },
+          //重写错误执行方法
           'overrideEvents': ['onDialogClose', 'onUploadSuccess', 'onUploadError', 'onSelectError'],
           //返回一个错误，选择文件的时候触发
           'onSelectError': function(file, errorCode, errorMsg) {
@@ -46,8 +47,12 @@
           },
           'onUploadError': function(file, errorCode, errorMsg, errorString) {
               //自己取消文件上传不弹出提示
-              if (errorCode === SWFUpload.UPLOAD_ERROR.FILE_CANCELLED || errorCode === SWFUpload.UPLOAD_ERROR.UPLOAD_STOPPED) {
+              if (errorCode === SWFUpload.UPLOAD_ERROR.FILE_CANCELLED) {
                   return;
+              }
+              if(errorCode === SWFUpload.UPLOAD_ERROR.UPLOAD_STOPPED) {
+                $(".tip").html("停止文件上传");
+                return;
               }
               var msgText = "上传失败\n";
               switch (errorCode) {

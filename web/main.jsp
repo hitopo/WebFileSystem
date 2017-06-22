@@ -74,7 +74,7 @@
              </div>
             </div>
             <div id="fileQueue">
-                <form action="servlet/FileUploadServlet" enctype="multipart/form-data" method="post">
+                <form action="servlet/UploadFileServlet" enctype="multipart/form-data" method="post">
                     <input type="file" name="uploadify" id="uploadify">
                 </form>
             </div>

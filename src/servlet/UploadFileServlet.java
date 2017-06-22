@@ -48,7 +48,8 @@ public class UploadFileServlet extends HttpServlet {
             items = upload.parseRequest(request);
         } catch (FileUploadException e) {
             //文件停止下载
-            e.printStackTrace();
+//            e.printStackTrace();
+//            out.print("1");
             return;
         }
 
@@ -84,7 +85,8 @@ public class UploadFileServlet extends HttpServlet {
                 item.write(fileTemp);
             } catch (Exception e) {
                 //保存文件失败
-                e.printStackTrace();
+//                e.printStackTrace();
+//                out.print("2");
                 return;
             }
 
@@ -102,6 +104,8 @@ public class UploadFileServlet extends HttpServlet {
             //将文件保存在数据库中
             FileDao fileDao = new FileDaoImpl();
             fileDao.addFile(file);
+                //保存文件到数据库失败
+//                out.print("3");
         }
     }
 }
