@@ -1,0 +1,28 @@
+﻿/*=======================================
+    GENERAL STYLES
+==================================================*/
+
+body {
+    font-family: '微软雅黑', cursive;
+    background-color: #B396FF;
+    color: #fff;
+    font-size: 18px;
+}
+
+.pad-top {
+    padding-top: 60px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+#error-link {
+    font-size: 150px;
+    padding: 10px;
+}
+
+a{
+	cursor: pointer;
+	text-decoration: none;
+}

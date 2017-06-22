@@ -102,8 +102,33 @@
         <url-pattern>/servlet/DeleteFileServlet</url-pattern>
     </servlet-mapping>
 
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/error.jsp</location>
+    </error-page>
 
 
+    <filter>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>filter.LoginFilter</filter-class>
+        <init-param>
+            <!--定义不需要过滤的页面-->
+            <param-name>noFilterPaths</param-name>
+            <param-value>/login.jsp;/serlvet/LoginServlet</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <!--过滤所有的页面，在init-param中配置不需要过滤的页面-->
+        <url-pattern>*.jsp</url-pattern>
+        <!--<url-pattern>servlet/*</url-pattern>-->
+    </filter-mapping>
     <welcome-file-list>
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
