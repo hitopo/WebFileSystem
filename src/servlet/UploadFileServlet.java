@@ -48,7 +48,7 @@ public class UploadFileServlet extends HttpServlet {
             items = upload.parseRequest(request);
         } catch (FileUploadException e) {
             //文件停止下载
-//            e.printStackTrace();
+            e.printStackTrace();
 //            out.print("1");
             return;
         }

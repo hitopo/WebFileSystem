@@ -1,5 +1,5 @@
   $(document).ready(function() {
-    //文件上传控件设置
+      //文件上传控件设置
       $("#uploadify").uploadify({
           //不自动上传文件
           'auto': false,
@@ -20,7 +20,7 @@
           'height': 45, //控件长度
           'method': 'post',
           'onFallBack': function() {
-              alert("您的浏览器不支持Flash");
+              alert("您的浏览器不支持Flash文件上传插件");
           },
           //重写错误执行方法
           'overrideEvents': ['onDialogClose', 'onUploadSuccess', 'onUploadError', 'onSelectError'],
@@ -50,9 +50,9 @@
               if (errorCode === SWFUpload.UPLOAD_ERROR.FILE_CANCELLED) {
                   return;
               }
-              if(errorCode === SWFUpload.UPLOAD_ERROR.UPLOAD_STOPPED) {
-                $(".tip").html("停止文件上传");
-                return;
+              if (errorCode === SWFUpload.UPLOAD_ERROR.UPLOAD_STOPPED) {
+                  alert('停止文件上传');
+                  return;
               }
               var msgText = "上传失败\n";
               switch (errorCode) {
@@ -88,6 +88,8 @@
           },
           //当队列中的所有文件全部完成上传时触发
           'onQueueComplete': function(queueData) {
+              //这里的提示如果停止文件上传会覆盖文件停止上传的提示
+              //停止文件上传该函数仍然被调用
               $(".tip").html('成功上传的文件数: ' + queueData.uploadsSuccessful + '\r\n上传出错的文件数: ' + queueData.uploadsErrored);
           }
       });

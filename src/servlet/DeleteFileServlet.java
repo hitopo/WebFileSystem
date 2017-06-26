@@ -50,7 +50,7 @@ public class DeleteFileServlet extends HttpServlet {
             }
         } else {
             //删除失败，给出提示
-            out.println("服务器删除文件失败");
+            out.println("文件正在下载中，删除失败");
         }
 
     }
