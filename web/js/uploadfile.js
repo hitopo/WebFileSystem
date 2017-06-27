@@ -1,9 +1,14 @@
   $(document).ready(function() {
       //文件上传控件设置
       $("#uploadify").uploadify({
+          'formData': {
+            'userId': "${user.userId}"
+          },
           //不自动上传文件
           'auto': false,
           'swf': 'uploadify/uploadify.swf',
+          //检查文件是否存在
+          'checkExisting': 'uploadify/check-exists.php',
           //指定后台处理的servlet
           'uploader': 'servlet/UploadFileServlet',
           'queueID': 'fileQueue', //与下面的id对应，指定DOM元素作为文件上传的容器

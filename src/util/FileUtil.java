@@ -48,4 +48,14 @@ public class FileUtil {
         //childfile==null说明文件夹是空的文件夹，直接删除即可
         return fileDec.delete();
     }
+
+    /**
+     * 检查文件是否存在
+     * @param path 文件路径
+     * @return 是否存在
+     */
+    public static boolean checkExisting(String path) {
+        File file = new File(path);
+        return file.exists();
+    }
 }

@@ -51,6 +51,10 @@
         <servlet-name>DeleteFileServlet</servlet-name>
         <servlet-class>servlet.DeleteFileServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CheckExistingServlet</servlet-name>
+        <servlet-class>servlet.CheckExistingServlet</servlet-class>
+    </servlet>
 
 
     <servlet-mapping>
@@ -100,6 +104,10 @@
     <servlet-mapping>
         <servlet-name>DeleteFileServlet</servlet-name>
         <url-pattern>/servlet/DeleteFileServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckExistingServlet</servlet-name>
+        <url-pattern>/servlet/CheckExistingServlet</url-pattern>
     </servlet-mapping>
 
     <error-page>
