@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>简单的表单验证</title>
+    <title>用户注册</title>
     <link rel="stylesheet" type="text/css" href="css/reg.css">
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src = "js/reg.js"></script>
